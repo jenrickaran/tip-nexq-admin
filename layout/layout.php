@@ -25,15 +25,19 @@ if (!array_key_exists($page, $pages)) {
 
 <?php include 'head.php'; ?>
 
-<body>
+<body class="bg-[#000000] text-white">
     <?php include 'head.php'; ?>
 
+    <?php include 'header.php'; ?>
+
     <main class="flex">
+
         <?php include 'navigation-bar.php'; ?>
 
         <section id="page-content" class="flex-1">
             <?php include $pages[$page]; ?>
         </section>
+
     </main>
 
     <?php include 'footer.php'; ?>
