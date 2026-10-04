@@ -23,6 +23,8 @@ try {
         ];
     } else {
         echo "Invalid username or password.";
+        header("Location: ../../index.php?error=invalid");
+        exit();
     }
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
