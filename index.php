@@ -8,10 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="w-full min-h-screen bg-[#0a0a0a] text-white flex flex-col">
+<body class="w-full min-h-screen bg-zinc-900 text-white flex flex-col">
 
-    <main class="flex flex-1 max-w-[1440px] mx-auto justify-evenly">
-        <section class="max-w-md p-8 justify-center flex flex-col">
+    <main class="flex flex-col lg:flex-row flex-1 max-w-[1440px] lg:mx-auto justify-evenly p-4 lg:p-0 gap-4 lg:gap-0">
+        <section class="max-w-md lg:p-8 justify-center lg:flex flex-col hidden">
             <img src="public/png/tip-logo.png" alt="NexQ Logo" class="size-32">
             <h1 class="text-5xl font-bold">Nex<span class="text-[#fdd201]">Q</span></h1>
             <h2 class="font-semibold text-2xl">Queue Notification System</h2>
@@ -23,18 +23,18 @@
         </section>
 
         <section class="flex flex-col justify-center">
-            <div class="border-2 border-[#fdd201] rounded-xl p-8">
-                <div class="flex items-center gap-5">
-                    <div class="border-2 border-[#fdd201] rounded-full flex justify-center items-center size-16">
+            <div class="border-2 border-[#fdd201] rounded-xl lg:p-8 p-2">
+                <div class="flex flex-col lg:flex-row items-center gap-5">
+                    <div class="border-2 border-[#fdd201] rounded-full lg:flex justify-center items-center size-16 hidden">
                         <svg width="35px" height="35px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8 7C9.65685 7 11 5.65685 11 4C11 2.34315 9.65685 1 8 1C6.34315 1 5 2.34315 5 4C5 5.65685 6.34315 7 8 7Z" fill="#fdd201" />
                             <path d="M14 12C14 10.3431 12.6569 9 11 9H5C3.34315 9 2 10.3431 2 12V15H14V12Z" fill="#fdd201" />
                         </svg>
                     </div>
 
-                    <div>
-                        <h1 class="text-5xl font-bold">Welcome!</h1>
-                        <p class="text-2xl">Please sign in to continue.</p>
+                    <div class="">
+                        <h1 class="text-2xl lg:text-5xl font-bold text-center lg:text-start">Welcome!</h1>
+                        <p class="text-md lg:text-2xl ">Please sign in to continue.</p>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@
                         </p>
                     </div>
 
-                    <div class="flex justify-between">
+                    <div class="flex justify-between hidden">
                         <div>
                             <input type="checkbox" name="rememberme" id="rememberme">
                             <label for="rememberme">Remember me</label>
@@ -131,7 +131,7 @@
                     <button
                         id="loginButton"
                         type="submit"
-                        class="bg-[#fdd201] p-3 text-black font-bold rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
+                        class="bg-[#fdd201] p-2 lg:p-3 text-black font-bold rounded-lg disabled:opacity-70 disabled:cursor-not-allowed">
 
                         <div class="flex justify-center items-center gap-1">
                             <!-- Login Icon -->
