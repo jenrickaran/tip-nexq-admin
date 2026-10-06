@@ -19,33 +19,37 @@ $page = $_GET['page'] ?? 'dashboard';
 if (!array_key_exists($page, $pages)) {
     $page = 'dashboard';
 }
-
-
 ?>
 
 <?php include 'head.php'; ?>
 
-<body class="bg-zinc-900 text-white max-w-[1440px] mx-auto pt-5 min-h-screen flex flex-col">
-    <?php include 'head.php'; ?>
+<body class="bg-zinc-900 text-white min-h-screen flex flex-col">
 
-    <?php include 'header.php'; ?>
+    <!-- Constrained Content -->
+    <div class="w-full max-w-[1440px] mx-auto flex flex-col flex-1">
 
-    <main class="flex flex-1 mt-5">
+        <?php include 'header.php'; ?>
 
-        <?php include 'navigation-bar.php'; ?>
+        <main class="flex flex-1 mt-5 mb-5">
 
-        <section id="page-content" class="flex-1">
-            <?php include $pages[$page]; ?>
-        </section>
+            <?php include 'navigation-bar.php'; ?>
 
-    </main>
+            <section id="page-content" class="flex-1">
+                <?php include $pages[$page]; ?>
+            </section>
 
+        </main>
+
+    </div>
+
+    <!-- Full-width Footer -->
     <?php include 'footer.php'; ?>
 
     <script>
         <?php include '../js/navigation-bar-script.js'; ?>
         <?php include '../js/date-and-time-footer.js'; ?>
     </script>
+
 </body>
 
 </html>

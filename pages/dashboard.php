@@ -5,6 +5,7 @@ require_once '../app/model/serving.php';
 require_once '../app/model/waiting.php';
 require_once '../app/model/queue-overview.php';
 require_once '../app/model/today-summary.php';
+require_once '../app/model/average-wait-time.php';
 
 //serving
 $serving = new Serving($conn);
@@ -20,9 +21,14 @@ $currentWaiting = $waiting->getAllWaiting();
 $queueOverview = new QueueOverview($conn);
 $queueList = $queueOverview->getWaitingQueue();
 
+$averageWaitTime = new AverageWaitTime($conn);
+$averageSeconds = $averageWaitTime->getAverageWaitTime();
+
 //ticket number and current waiting
 $ticketNo = $currentServing['ticket_no'] ?? '0';
 $waitingCount = $currentWaiting['waiting_count'] ?? 0;
+$averageMinutes = round($averageSeconds / 60, 1);
+
 
 
 //today's summary to display
@@ -163,62 +169,82 @@ $stillWaiting = $todaySummary->getStillWaiting();
 
         </div>
 
+        <div class="w-full max-w-1/2 mt-6">
+            <!-- Today's Summary -->
+            <div class="border rounded-lg overflow-hidden">
+                <h2 class="px-4 py-4 text-lg font-semibold text-[#FED201]">
+                    Today's Summary
+                </h2>
 
-        <!--Today Summary Table-->
-        <div class="mt-6 w-full rounded-lg border border-gray-200 max-w-1/2">
+                <table class="w-full text-left text-sm">
 
-            <h2 class="px-4 py-4 text-lg font-semibold text-[#FED201]">
-                Today's Summary
-            </h2>
+                    <tbody>
 
-            <table class="w-full text-left text-sm">
+                        <tr class="border-t border-gray-200">
+                            <td class="px-4 py-3">
+                                Total Issued
+                            </td>
 
-                <tbody>
+                            <td class="px-4 py-3 text-right font-semibold">
+                                <?= $totalIssued ?>
+                            </td>
+                        </tr>
 
-                    <tr class="border-t border-gray-200">
-                        <td class="px-4 py-3">
-                            Total Issued
-                        </td>
+                        <tr class="border-t border-gray-200">
+                            <td class="px-4 py-3">
+                                Total Served
+                            </td>
 
-                        <td class="px-4 py-3 text-right font-semibold">
-                            <?= $totalIssued ?>
-                        </td>
-                    </tr>
+                            <td class="px-4 py-3 text-right font-semibold">
+                                <?= $totalServed ?>
+                            </td>
+                        </tr>
 
-                    <tr class="border-t border-gray-200">
-                        <td class="px-4 py-3">
-                            Total Served
-                        </td>
+                        <tr class="border-t border-gray-200">
+                            <td class="px-4 py-3">
+                                Still Waiting
+                            </td>
 
-                        <td class="px-4 py-3 text-right font-semibold">
-                            <?= $totalServed ?>
-                        </td>
-                    </tr>
+                            <td class="px-4 py-3 text-right font-semibold">
+                                <?= $stillWaiting ?>
+                            </td>
+                        </tr>
 
-                    <tr class="border-t border-gray-200">
-                        <td class="px-4 py-3">
-                            Still Waiting
-                        </td>
+                        <tr class="border-t border-gray-200">
+                            <td class="px-4 py-3">
+                                Average Wait Time
+                            </td>
 
-                        <td class="px-4 py-3 text-right font-semibold">
-                            <?= $stillWaiting ?>
-                        </td>
-                    </tr>
+                            <td class="px-4 py-3 text-right font-semibold">
+                                <?= htmlspecialchars($averageMinutes) ?> min
+                            </td>
+                        </tr>
 
-                    <tr class="border-t border-gray-200">
-                        <td class="px-4 py-3">
-                            Average Wait Time
-                        </td>
+                    </tbody>
 
-                        <td class="px-4 py-3 text-right font-semibold">
-                            0 min
-                        </td>
-                    </tr>
+                </table>
+            </div>
 
-                </tbody>
+            <!-- Button OUTSIDE the table border -->
+            <div class="mt-3 w-full">
+                <button
+                    type="button"
+                    class="px-10 py-2 bg-transparent text-white rounded-lg border-2 border-[#FED201] w-full cursor-pointer">
+                    <span class="flex gap-2 items-center justify-center">
+                        <div>
+                            <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2.99988C16.9706 2.99988 21 7.02931 21 11.9999C21 16.9704 16.9706 20.9999 12 20.9999C7.02944 20.9999 3 16.9704 3 11.9999C3 9.17261 4.30367 6.64983 6.34267 4.99988" stroke="#FED201" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <path d="M3 4.49988H7V8.49988" stroke="#FED201" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                            </svg>
+                        </div>
 
-            </table>
-
+                        <div class="flex flex-col items-start">
+                            <h1>RESET QUEUE</h1>
+                            <h2>Start the queue over</h2>
+                        </div>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
