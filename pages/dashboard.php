@@ -140,7 +140,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody id="queueTableBody">
 
                         <?php if (empty($queueList)): ?>
 

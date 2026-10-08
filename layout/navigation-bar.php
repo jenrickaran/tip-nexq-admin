@@ -2,7 +2,8 @@
 $currentPage = $_GET['page'] ?? 'dashboard';
 ?>
 
-<nav id="mobileNav" class="hidden lg:flex flex-1 flex-col max-w-[230px]">
+<nav id="mobileNav" class="flex flex-col w-[230px] shrink-0 h-screen fixed top-0 left-0 z-50 bg-zinc-900 p-3 rounded-lg shadow-2xl -translate-x-[250px] overflow-y-auto transition-transform duration-300 ease-in-out
+    lg:static lg:translate-x-0 lg:p-0 lg:rounded-none lg:shadow-none lg:bg-transparent lg:z-auto lg:h-auto lg:overflow-visible">
     <a href="?page=dashboard" class="nav-link p-2 rounded-lg <?= ($currentPage ?? 'dashboard') === 'dashboard' ? 'bg-[#FED201] font-bold' : '' ?>" data-page="dashboard">
         <div class="flex items-center gap-2">
             <svg width="36px" height="36px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">

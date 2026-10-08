@@ -1,9 +1,9 @@
 <footer class="flex flex-col lg:flex-row justify-between bg-[#FED201] px-5 py-2">
-    <div class="flex items-center">
+    <div class="flex items-center lg:flex-row flex-col">
         <img src="../public/png/tip-logo.png" alt="Tip Logo" class="lg:size-24 size-20">
 
-        <div class="flex flex-col text-black">
-            <p>Technological Institute of the Philippines</p>
+        <div class="flex flex-col text-black lg:items-start items-center justify-center lg:justify-start">
+            <p class="lg:text-start text-center">Technological Institute of the Philippines</p>
             <p>Student Accounting Office</p>
         </div>
     </div>
