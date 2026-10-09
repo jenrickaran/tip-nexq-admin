@@ -1,30 +1,55 @@
-function showQueueLoading() {
-  const tbody = document.getElementById("queueTableBody");
+document.addEventListener("click", async function (event) {
+  const button = event.target.closest(".queue-page-btn");
 
-  if (!tbody) return;
+  if (!button) return;
 
-  tbody.innerHTML = `
-            <tr>
-                <td colspan="4" class="px-4 py-10">
-                    <div class="flex items-center justify-center gap-3 text-gray-400">
-                        <div class="h-5 w-5 animate-spin rounded-full border-2 border-gray-600 border-t-[#FED201]"></div>
-                        <span>Loading queue...</span>
-                    </div>
-                </td>
-            </tr>
-        `;
-}
+  event.preventDefault();
 
-// Pagination
-document.querySelectorAll('a[href*="queue_page"]').forEach((link) => {
-  link.addEventListener("click", function () {
-    showQueueLoading();
-  });
+  const page = button.dataset.page;
+
+  const queueContainer = document.getElementById("queueOverview");
+  const loader = document.getElementById("queueOverviewLoader");
+
+  if (!queueContainer || !loader) {
+    return;
+  }
+
+  // Show loading
+  loader.classList.remove("hidden");
+  loader.classList.add("flex");
+
+  // Disable pagination buttons while loading
+  document
+    .querySelectorAll(".queue-page-btn")
+    .forEach((btn) => (btn.disabled = true));
+
+  try {
+    const response = await fetch(
+      `/admin/pages/queue-overview-content.php?queue_page=${page}`,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      },
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to load queue page: ${response.status}`);
+    }
+
+    const html = await response.text();
+
+    queueContainer.innerHTML = html;
+  } catch (error) {
+    console.error("Queue pagination error:", error);
+  } finally {
+    // Hide loading
+    loader.classList.add("hidden");
+    loader.classList.remove("flex");
+
+    // Re-enable buttons
+    document
+      .querySelectorAll(".queue-page-btn")
+      .forEach((btn) => (btn.disabled = false));
+  }
 });
-
-// NEXT button
-document
-  .querySelector('form[action*="nextController.php"]')
-  ?.addEventListener("submit", function () {
-    showQueueLoading();
-  });

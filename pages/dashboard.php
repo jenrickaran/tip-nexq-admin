@@ -41,7 +41,24 @@ $stillWaiting = $todaySummary->getStillWaiting();
 <?php include '../layout/head.php'; ?>
 
 
-<div class="px-3 lg:px-8">
+<div id="dashboardContent" class="relative px-3 lg:px-8">
+    <!-- NEXT Customer Loader -->
+    <div
+        id="nextCustomerLoader"
+        class="absolute inset-0 z-30 hidden items-center justify-center rounded-lg bg-zinc-900/70 backdrop-blur-sm">
+
+        <div class="flex flex-col items-center gap-3">
+            <div
+                class="h-10 w-10 animate-spin rounded-full border-4 border-zinc-700 border-t-[#FED201]">
+            </div>
+
+            <p class="text-sm text-gray-300">
+                Calling next customer...
+            </p>
+        </div>
+
+    </div>
+
     <div class="flex items-center">
         <svg width="40px" height="40px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.875 7.375C14.875 8.68668 13.8117 9.75 12.5 9.75C11.1883 9.75 10.125 8.68668 10.125 7.375C10.125 6.06332 11.1883 5 12.5 5C13.8117 5 14.875 6.06332 14.875 7.375Z" stroke="#FED201" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -57,7 +74,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
         <div class="w-full lg:w-1/2 flex flex-col border-2 border-[#FED201] rounded-lg p-3 lg:p-10">
             <p class="text-3xl">NOW SERVING</p>
             <div class="flex items-end">
-                <h1 class="text-7xl font-bold text-[#FED201]"><?php echo htmlspecialchars($ticketNo ?? '0'); ?></h1>
+                <h1 class="text-7xl font-bold text-[#FED201]" id="ticketNo"><?php echo htmlspecialchars($ticketNo ?? '0'); ?></h1>
                 <svg width="35px" height="35px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.875 7.375C14.875 8.68668 13.8117 9.75 12.5 9.75C11.1883 9.75 10.125 8.68668 10.125 7.375C10.125 6.06332 11.1883 5 12.5 5C13.8117 5 14.875 6.06332 14.875 7.375Z" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M17.25 15.775C17.25 17.575 15.123 19.042 12.5 19.042C9.877 19.042 7.75 17.579 7.75 15.775C7.75 13.971 9.877 12.509 12.5 12.509C15.123 12.509 17.25 13.971 17.25 15.775Z" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -71,7 +88,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
         <div class="w-full lg:w-1/2 flex flex-col border-2 border-[#FED201] rounded-lg p-3 lg:p-10">
             <p class="text-3xl">TOTAL WAITING</p>
             <div class="flex items-end">
-                <h1 class="text-7xl font-bold text-[#FED201]"><?php echo htmlspecialchars($waitingCount ?? '0'); ?></h1>
+                <h1 class="text-7xl font-bold text-[#FED201]" id="waitingCount"><?php echo htmlspecialchars($waitingCount ?? '0'); ?></h1>
                 <svg width="35px" height="35px" viewBox="0 -0.5 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M14.875 7.375C14.875 8.68668 13.8117 9.75 12.5 9.75C11.1883 9.75 10.125 8.68668 10.125 7.375C10.125 6.06332 11.1883 5 12.5 5C13.8117 5 14.875 6.06332 14.875 7.375Z" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M17.25 15.775C17.25 17.575 15.123 19.042 12.5 19.042C9.877 19.042 7.75 17.579 7.75 15.775C7.75 13.971 9.877 12.509 12.5 12.509C15.123 12.509 17.25 13.971 17.25 15.775Z" stroke="#808080" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -84,8 +101,8 @@ $stillWaiting = $todaySummary->getStillWaiting();
     </div>
 
     <div class="lg:mt-10 mt-5">
-        <form action="../app/controller/nextController.php" method="post" class="lg:flex lg:justify-end w-full">
-            <button type="submit" class="bg-[#FED201] cursor-pointer py-2 px-6 rounded-lg flex-col flex w-full lg:w-auto">
+        <form action="../app/controller/nextController.php" method="post" class="lg:flex lg:justify-end w-full" id="nextCustomerForm">
+            <button type="submit" class="bg-[#FED201] cursor-pointer py-2 px-6 rounded-lg flex-col flex w-full lg:w-auto" id="nextCustomerButton">
                 <div class="flex items-center gap-1 justify-center">
                     <svg fill="#000000" height="15px" width="15px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                         viewBox="0 0 512 512" xml:space="preserve">
@@ -107,226 +124,32 @@ $stillWaiting = $todaySummary->getStillWaiting();
     </div>
 
     <div class="flex gap-2 flex-col lg:flex-row lg:max-h-[344px]">
-        <!--Queue Overview Table-->
-        <?php $itemsPerPage = 3;
-        $currentPage = isset($_GET['queue_page'])
-            ? max(1, (int) $_GET['queue_page'])
-            : 1;
-        $totalItems = count($queueList);
-        $totalPages = max(1, ceil($totalItems / $itemsPerPage));
-        $currentPage = min($currentPage, $totalPages);
-        $offset = ($currentPage - 1) * $itemsPerPage;
-        $paginatedQueue = array_slice(
-            $queueList,
-            $offset,
-            $itemsPerPage
-        );
-        ?>
-        <div class="mt-6 flex w-full flex-col overflow-hidden rounded-lg border border-gray-200 lg:max-w-1/2">
 
-            <h2 class="px-4 py-4 text-lg font-semibold text-[#FED201]">
-                Queue Overview
-            </h2>
+        <!-- Queue Overview -->
+        <div class="relative mt-6 flex w-full flex-col lg:max-w-1/2">
 
-            <div class="flex-1">
-                <table class="w-full text-left text-sm">
-
-                    <thead class="border-t border-gray-200">
-                        <tr>
-                            <th class="px-4 py-3 font-normal">#</th>
-                            <th class="px-4 py-3 font-normal">QUEUE NUMBER</th>
-                            <th class="px-4 py-3 font-normal">STATUS</th>
-                            <th class="px-4 py-3 font-normal">TIME ADDED</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="queueTableBody">
-
-                        <?php if (empty($queueList)): ?>
-
-                            <tr>
-                                <td colspan="4" class="px-4 py-6 text-center text-gray-500">
-                                    No customers waiting.
-                                </td>
-                            </tr>
-
-                        <?php else: ?>
-
-                            <?php foreach ($paginatedQueue as $queue): ?>
-
-                                <tr class="border-t border-gray-200">
-
-                                    <td class="px-4 py-3">
-                                        <?= htmlspecialchars($queue['id']) ?>
-                                    </td>
-
-                                    <td class="px-4 py-3 font-semibold">
-                                        <?= htmlspecialchars($queue['ticket_no']) ?>
-                                    </td>
-
-                                    <td class="px-4 py-3">
-                                        <?= htmlspecialchars($queue['status']) ?>
-                                    </td>
-
-                                    <td class="px-4 py-3">
-                                        <?= date('h:i A', strtotime($queue['timestamp'])) ?>
-                                    </td>
-
-                                </tr>
-
-                            <?php endforeach; ?>
-
-                        <?php endif; ?>
-
-                    </tbody>
-
-                </table>
+            <div id="queueOverview">
+                <?php include 'queue-overview-content.php'; ?>
             </div>
 
-            <?php if ($totalPages > 1): ?>
+            <!-- Loader is NOT replaced -->
+            <div
+                id="queueOverviewLoader"
+                class="absolute inset-0 z-20 hidden items-center justify-center rounded-lg bg-zinc-700/50 backdrop-blur-[1px]">
 
-                <div class="flex items-center justify-between border-t border-gray-200 px-2 py-4 lg:px-4 lg:py-3">
+                <div class="flex flex-col items-center gap-2">
 
-                    <!-- Previous -->
-                    <div>
-                        <?php if ($currentPage > 1): ?>
-
-                            <a
-                                href="?queue_page=<?= $currentPage - 1 ?>"
-                                class="rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100">
-                                Previous
-                            </a>
-
-                        <?php else: ?>
-
-                            <span
-                                class="cursor-not-allowed rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-300">
-                                Previous
-                            </span>
-
-                        <?php endif; ?>
+                    <div
+                        class="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-[#FED201]">
                     </div>
 
-
-                    <!-- ========================= -->
-                    <!-- MOBILE PAGINATION -->
-                    <!-- ========================= -->
-                    <div class="flex items-center gap-1 md:hidden">
-
-                        <?php
-                        /*
-         * Mobile:
-         * Show maximum of 3 page numbers.
-         */
-
-                        $mobileStart = max(1, min(
-                            $currentPage - 1,
-                            $totalPages - 2
-                        ));
-
-                        $mobileEnd = min(
-                            $totalPages,
-                            $mobileStart + 2
-                        );
-                        ?>
-
-                        <?php for ($page = $mobileStart; $page <= $mobileEnd; $page++): ?>
-
-                            <a
-                                href="?queue_page=<?= $page ?>"
-                                class="rounded-md px-3 py-2 text-sm transition
-                    <?= $page == $currentPage
-                                ? 'bg-[#FED201] font-semibold text-black'
-                                : 'text-gray-600 hover:bg-gray-100'
-                    ?>">
-                                <?= $page ?>
-                            </a>
-
-                        <?php endfor; ?>
-
-                        <?php if ($mobileEnd < $totalPages): ?>
-
-                            <span class="px-1 text-gray-500">
-                                ...
-                            </span>
-
-                        <?php endif; ?>
-
-                    </div>
-
-
-                    <!-- ========================= -->
-                    <!-- TABLET / DESKTOP -->
-                    <!-- ========================= -->
-                    <div class="hidden items-center gap-1 md:flex">
-
-                        <?php
-                        /*
-         * Tablet/Desktop:
-         * Show maximum of 5 page numbers.
-         */
-
-                        $desktopStart = max(1, min(
-                            $currentPage - 2,
-                            $totalPages - 4
-                        ));
-
-                        $desktopEnd = min(
-                            $totalPages,
-                            $desktopStart + 4
-                        );
-                        ?>
-
-                        <?php for ($page = $desktopStart; $page <= $desktopEnd; $page++): ?>
-
-                            <a
-                                href="?queue_page=<?= $page ?>"
-                                class="rounded-md px-3 py-2 text-sm transition
-                    <?= $page == $currentPage
-                                ? 'bg-[#FED201] font-semibold text-black'
-                                : 'text-gray-600 hover:bg-gray-100'
-                    ?>">
-                                <?= $page ?>
-                            </a>
-
-                        <?php endfor; ?>
-
-                        <?php if ($desktopEnd < $totalPages): ?>
-
-                            <span class="px-1 text-gray-500">
-                                ...
-                            </span>
-
-                        <?php endif; ?>
-
-                    </div>
-
-
-                    <!-- Next -->
-                    <div>
-
-                        <?php if ($currentPage < $totalPages): ?>
-
-                            <a
-                                href="?queue_page=<?= $currentPage + 1 ?>"
-                                class="rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100">
-                                Next
-                            </a>
-
-                        <?php else: ?>
-
-                            <span
-                                class="cursor-not-allowed rounded-md border border-gray-200 px-3 py-2 text-sm text-gray-300">
-                                Next
-                            </span>
-
-                        <?php endif; ?>
-
-                    </div>
+                    <span class="text-sm text-white">
+                        Loading...
+                    </span>
 
                 </div>
 
-            <?php endif; ?>
+            </div>
 
         </div>
 
@@ -346,7 +169,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
                                 Total Issued
                             </td>
 
-                            <td class="px-4 py-3 text-right font-semibold">
+                            <td class="px-4 py-3 text-right font-semibold" id="totalIssued">
                                 <?= $totalIssued ?>
                             </td>
                         </tr>
@@ -356,7 +179,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
                                 Total Served
                             </td>
 
-                            <td class="px-4 py-3 text-right font-semibold">
+                            <td class="px-4 py-3 text-right font-semibold" id="totalServed">
                                 <?= $totalServed ?>
                             </td>
                         </tr>
@@ -366,7 +189,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
                                 Still Waiting
                             </td>
 
-                            <td class="px-4 py-3 text-right font-semibold">
+                            <td class="px-4 py-3 text-right font-semibold" id="stillWaiting">
                                 <?= $stillWaiting ?>
                             </td>
                         </tr>
@@ -376,7 +199,7 @@ $stillWaiting = $todaySummary->getStillWaiting();
                                 Average Wait Time
                             </td>
 
-                            <td class="px-4 py-3 text-right font-semibold">
+                            <td class="px-4 py-3 text-right font-semibold" id="averageWaitTime">
                                 <?= htmlspecialchars($averageMinutes) ?> min
                             </td>
                         </tr>

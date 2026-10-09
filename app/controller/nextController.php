@@ -1,14 +1,25 @@
 <?php
-include '../model/next-customer.php';
+
+require_once '../../config/dbConfig.php';
+require_once '../model/next-customer.php';
 
 $serving = new NextCustomer($conn);
 
 $servedTicket = $serving->getNextCustomer();
 
+header('Content-Type: application/json');
+
 if ($servedTicket) {
-    header("Location: ../../layout/layout.php?served=$servedTicket");
+    echo json_encode([
+        'success' => true,
+        'ticketNo' => $servedTicket
+    ]);
     exit;
 }
 
-header("Location: ../../layout/layout.php?error=no_waiting");
+echo json_encode([
+    'success' => false,
+    'message' => 'No waiting customers.'
+]);
+
 exit;

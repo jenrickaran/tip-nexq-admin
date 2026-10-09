@@ -1,14 +1,17 @@
 <?php
-require_once '../config/dbConfig.php';
+require_once __DIR__ . '/../../config/dbConfig.php';
 
-class Serving {
+class Serving
+{
     private PDO $conn;
 
-    public function __construct(PDO $conn) {
+    public function __construct(PDO $conn)
+    {
         $this->conn = $conn;
     }
 
-    public function getAllServings() {
+    public function getAllServings()
+    {
         $sql = "SELECT email, ticket_no FROM email WHERE status = 'Waiting' LIMIT 1";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
@@ -23,4 +26,3 @@ class Serving {
         ];
     }
 }
-?>

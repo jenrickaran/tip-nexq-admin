@@ -20,9 +20,7 @@ if (!array_key_exists($page, $pages)) {
     $page = 'dashboard';
 }
 
-$showPageLoader = !isset($_SESSION['page_loaded']);
-
-$_SESSION['page_loaded'] = true;
+$showPageLoader = true;
 ?>
 
 <?php include 'head.php'; ?>
@@ -74,6 +72,7 @@ $_SESSION['page_loaded'] = true;
             <?php include '../js/content-loader.js'; ?>
         <?php endif; ?>
         <?php include '../js/queue-overview-table-loader.js'; ?>
+        <?php include '../js/next-customer.js'; ?>
     </script>
 
 </body>
