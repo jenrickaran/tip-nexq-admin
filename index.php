@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NexQ</title>
     <link rel="icon" href="public/png/tip-logo.png" type="image/png">
+    <link rel="stylesheet" href="css/body.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -119,16 +120,6 @@
                         </p>
                     </div>
 
-                    <div class="flex justify-between hidden">
-                        <div>
-                            <input type="checkbox" name="rememberme" id="rememberme">
-                            <label for="rememberme">Remember me</label>
-                        </div>
-
-                        <div>
-                            <a href="#" class="text-[#fdd201]">Forgot password?</a>
-                        </div>
-                    </div>
                     <button
                         id="loginButton"
                         type="submit"

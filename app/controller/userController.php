@@ -1,32 +1,41 @@
+
 <?php
 session_start();
-include '../model/user.php';
+require_once '../model/user.php';
 
 $username = $_POST['username'] ?? null;
 $password = $_POST['password'] ?? null;
 
 if (empty($username) || empty($password)) {
-    echo "Username and password are required.";
+    header('Location: ../../index.php?error=empty');
     exit;
 }
 
 try {
     $userModel = new User($conn);
-    if ($userModel->login($username, $password)) {
-        echo "Login successful!";
+    $user = $userModel->login($username, $password);
 
-        header('Location: ../../layout/layout.php');
+    if ($user) {
         $_SESSION['username'] = [
-            'username' => $username,
-            'email' => $user['email'] ?? null,
-            'password' => $user['password'] ?? null
+            'username' => $user['username'],
+            'email' => $user['email'],
+            'role' => $user['role']
         ];
+
+        if ($user['role'] === 'superadmin') {
+            header('Location: ../../layout/superadmin-layout.php');
+        } else {
+            header('Location: ../../layout/layout.php');
+        }
+
+        exit;
     } else {
-        echo "Invalid username or password.";
-        header("Location: ../../index.php?error=invalid");
-        exit();
+        header('Location: ../../index.php?error=invalid');
+        exit;
     }
 } catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    error_log($e->getMessage());
+    header('Location: ../../index.php?error=server');
     exit;
 }
+?>

@@ -1,47 +1,99 @@
-function updateDateTime() {
-  const now = new Date();
-
-  document.getElementById("current-date").textContent = now.toLocaleDateString(
-    "en-PH",
-    {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    },
-  );
-
-  document.getElementById("current-time").textContent = now.toLocaleTimeString(
-    "en-PH",
-    {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: true,
-    },
-  );
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value; // silently skip if element isn't on this page
 }
 
-updateDateTime();
-setInterval(updateDateTime, 1000);
-
-function updateDateTimeMobile() {
+function updateDateTime() {
   const now = new Date();
-
-  document.getElementById("current-date-mobile").textContent =
+  setText(
+    "current-date",
     now.toLocaleDateString("en-PH", {
       year: "numeric",
       month: "long",
       day: "numeric",
-    });
-
-  document.getElementById("current-time-mobile").textContent =
+    }),
+  );
+  setText(
+    "current-time",
     now.toLocaleTimeString("en-PH", {
       hour: "2-digit",
       minute: "2-digit",
       second: "2-digit",
       hour12: true,
-    });
+    }),
+  );
 }
 
-updateDateTimeMobile();
-setInterval(updateDateTimeMobile, 1000);
+function updateDateTimeMobile() {
+  const now = new Date();
+  setText(
+    "current-date-mobile",
+    now.toLocaleDateString("en-PH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+  );
+  setText(
+    "current-time-mobile",
+    now.toLocaleTimeString("en-PH", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }),
+  );
+}
+
+function updateDateTimeSuperAdmin() {
+  const now = new Date();
+  setText(
+    "current-date-superadmin",
+    now.toLocaleDateString("en-PH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+  );
+  setText(
+    "current-time-superadmin",
+    now.toLocaleTimeString("en-PH", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }),
+  );
+}
+
+function updateDateTimeSuperAdminMobile() {
+  const now = new Date();
+  setText(
+    "current-date-mobile-superadmin",
+    now.toLocaleDateString("en-PH", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+  );
+  setText(
+    "current-time-mobile-superadmin",
+    now.toLocaleTimeString("en-PH", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true,
+    }),
+  );
+}
+
+// Run once on load and every second
+[
+  updateDateTime,
+  updateDateTimeMobile,
+  updateDateTimeSuperAdmin,
+  updateDateTimeSuperAdminMobile,
+].forEach((fn) => {
+  fn();
+  setInterval(fn, 1000);
+});

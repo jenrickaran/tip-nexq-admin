@@ -1,3 +1,17 @@
 body {
   font-family: "Inter", sans-serif;
 }
+
+/* Hide Edge / IE built-in password reveal button */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* Some Chromium builds expose this too */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-strong-password-auto-fill-button {
+  display: none !important;
+  visibility: hidden;
+  pointer-events: none;
+}
