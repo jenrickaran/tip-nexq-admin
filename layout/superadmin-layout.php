@@ -1,9 +1,18 @@
 <?php
+session_start();
+
+$user = $_SESSION['username'] ?? null;
+
+if (!isset($_SESSION['username'])) {
+    header('Location: ../index.php');
+    exit;
+}
+
 include 'head.php';
 
 $pages = [
     'dashboard' => '../pages/superadmin-dashboard.php',
-    'add-account' => '../pages/superadmin-add-account.php',
+    'user' => '../pages/superadmin-user.php',
     'settings' => '../pages/settings.php'
 ];
 
