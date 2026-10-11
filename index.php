@@ -280,6 +280,8 @@
         </div>
     </div>
 
+    <?php include 'modal/error-login.php'; ?>
+
     <script>
         <?php include 'js/view-password.js'; ?>
         <?php include 'js/log-in-button-spinner.js'; ?>

@@ -1,7 +1,7 @@
 
 <?php
 
-$normalWord = "tralalA!007";
+$normalWord = "polskie123";
 
 $hashedWord = password_hash($normalWord, PASSWORD_DEFAULT);
 

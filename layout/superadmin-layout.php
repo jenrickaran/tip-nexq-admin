@@ -40,5 +40,10 @@ $page = $_GET['page'] ?? 'dashboard';
 
     <script>
         <?php include '../js/date-and-time-footer.js'; ?>
+        <?php include '../js/add-account.js'; ?>
+        <?php include '../js/error-add-account.js'; ?>
+        <?php include '../js/success-add-account.js'; ?>
+        <?php include '../js/user-overview.js'; ?>
     </script>
+    <script src="../js/reset-password-modal.js"></script>
 </body>

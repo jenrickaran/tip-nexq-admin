@@ -1,5 +1,6 @@
 <?php
 require_once '../../config/dbConfig.php';
+
 class User
 {
     private PDO $conn;
@@ -11,20 +12,26 @@ class User
 
     public function login($username, $password)
     {
-        $sql = $this->conn->prepare("SELECT * FROM users WHERE username = :username");
+        $sql = $this->conn->prepare(
+            "SELECT username, email, password, role, status
+             FROM users
+             WHERE username = :username"
+        );
+
         $sql->bindParam(':username', $username);
         $sql->execute();
+
         $user = $sql->fetch(PDO::FETCH_ASSOC);
 
         if ($user && password_verify($password, $user['password'])) {
             return [
                 'username' => $user['username'],
-                'email' => $user['email'],
-                'password' => $user['password'],
-                'role' => $user['role']
+                'email'    => $user['email'],
+                'role'     => $user['role'],
+                'status'   => strtolower(trim($user['status']))
             ];
-        } else {
-            return false;
         }
+
+        return false;
     }
 }
