@@ -111,7 +111,7 @@ $totalActive = $users->totalActive();
         <div class="w-1/2 flex flex-col">
             <div class="flex">
                 <h1>Recent Activity</h1>
-                <a href="">View all</a>
+                <a href="?page=audit-logs">View all</a>
             </div>
 
 
