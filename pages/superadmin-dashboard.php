@@ -12,9 +12,9 @@ $totalActive = $users->totalActive();
     <h1 class="font-semibold text-4xl">Dashboard</h1>
 
     <!--boxes-->
-    <div class="flex">
+    <div class="flex justify-between">
 
-        <div>
+        <div class="max-w-[200px] w-full">
             <div>
                 <!--here is svg-->
                 <h2>Total Users</h2>
@@ -22,7 +22,7 @@ $totalActive = $users->totalActive();
             <h1><?= htmlspecialchars($totalUsers) ?></h1>
         </div>
 
-        <div>
+        <div class="max-w-[200px] w-full">
             <div>
                 <!--here is svg-->
                 <h2>Total Admins</h2>
@@ -30,7 +30,7 @@ $totalActive = $users->totalActive();
             <h1><?= htmlspecialchars($totalAdmins) ?></h1>
         </div>
 
-        <div>
+        <div class="max-w-[200px] w-full">
             <div>
                 <!--here is svg-->
                 <h2>Active sessions</h2>
@@ -38,7 +38,7 @@ $totalActive = $users->totalActive();
             <h1><?= htmlspecialchars($totalActive) ?></h1>
         </div>
 
-        <div>
+        <div class="max-w-[200px] w-full">
             <div>
                 <!--here is svg-->
                 <h2>Failed Logins (24h)</h2>
@@ -46,7 +46,7 @@ $totalActive = $users->totalActive();
             <h1>numbers of total admin</h1>
         </div>
 
-        <div>
+        <div class="max-w-[200px] w-full">
             <div>
                 <!--here is svg-->
                 <h2>System Health</h2>
@@ -59,7 +59,7 @@ $totalActive = $users->totalActive();
     <div class="w-full flex">
 
         <!--Quick Actions-->
-        <div class="w-1/2 flex flex-col">
+        <div class="w-full flex flex-col">
             <h1>Quick Actions</h1>
 
             <button onclick="window.location.href='?page=user'">
@@ -105,16 +105,6 @@ $totalActive = $users->totalActive();
                     </div>
                 </div>
             </button>
-        </div>
-
-        <!--Recent Activity-->
-        <div class="w-1/2 flex flex-col">
-            <div class="flex">
-                <h1>Recent Activity</h1>
-                <a href="?page=audit-logs">View all</a>
-            </div>
-
-
         </div>
     </div>
 </div>

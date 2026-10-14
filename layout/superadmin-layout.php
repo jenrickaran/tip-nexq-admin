@@ -19,20 +19,22 @@ $pages = [
 $page = $_GET['page'] ?? 'dashboard';
 ?>
 
-<body class="bg-zinc-900 text-white">
-    <?php
-    include 'header.php';
-    ?>
+<body class="bg-zinc-900 text-white min-h-screen">
+    <div class="max-w-[1440px] flex flex-col mx-auto lg:px-8 2xl:px-0">
+        <?php
+        include 'header.php';
+        ?>
 
-    <main class="relative flex flex-1 mt-5 mb-5">
+        <main class="relative flex flex-1 mt-5 mb-5">
 
-        <?php include 'superadmin-navigation-bar.php'; ?>
+            <?php include 'superadmin-navigation-bar.php'; ?>
 
-        <section id="page-content" class="flex-1 min-w-0">
-            <?php include $pages[$page]; ?>
-        </section>
+            <section id="page-content" class="flex-1 min-w-0">
+                <?php include $pages[$page]; ?>
+            </section>
 
-    </main>
+        </main>
+    </div>
 
     <?php
     include 'superadmin-footer.php';
