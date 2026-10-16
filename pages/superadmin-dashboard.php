@@ -57,7 +57,7 @@ $totalActive = $users->totalActive();
 
         <!--Quick Actions-->
         <div class="w-full flex flex-col">
-            <h1>Quick Actions</h1>
+            <h1>Quick Action</h1>
 
             <button onclick="window.location.href='?page=user'">
                 <div>
