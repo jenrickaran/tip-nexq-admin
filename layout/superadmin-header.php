@@ -8,8 +8,6 @@
         </div>
     </div>
 
-    <!--dropdown menu-->
-
     <form action="../app/controller/logoutController.php" class="items-center flex">
         <button type="submit" class="cursor-pointer">
             <div class="flex items-center gap-2">
@@ -29,7 +27,7 @@
     <div class="p-4 flex gap-2">
         <button
             type="button"
-            id="menuButton"
+            id="menuButtonSuperAdmin"
             aria-label="Open navigation menu"
             aria-expanded="false"
             class="cursor-pointer">

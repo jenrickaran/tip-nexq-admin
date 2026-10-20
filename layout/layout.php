@@ -67,7 +67,7 @@ $showPageLoader = true;
     <script>
         <?php include '../js/navigation-bar-script.js'; ?>
         <?php include '../js/date-and-time-footer.js'; ?>
-        <?php include '../js/hamburger-menu.js'; ?>
+        <?php include '../js/hamburger-menu.js'; ?> 
         <?php if ($showPageLoader): ?>
             <?php include '../js/content-loader.js'; ?>
         <?php endif; ?>

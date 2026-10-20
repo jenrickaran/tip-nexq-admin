@@ -89,8 +89,6 @@ $users = $userOverview->getAllUsers();
                                     <div
                                         data-action-menu
                                         class="absolute right-0 z-20 mt-1 hidden w-40 origin-top-right rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
-                                        <button type="button" data-action="view" class="flex w-full items-center px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50">View</button>
-                                        <button type="button" data-action="edit" class="flex w-full items-center px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50">Edit</button>
                                         <button
                                             type="button"
                                             data-action="reset"
@@ -100,7 +98,14 @@ $users = $userOverview->getAllUsers();
                                             Reset Password
                                         </button>
                                         <div class="my-1 border-t border-gray-100"></div>
-                                        <button type="button" data-action="delete" class="flex w-full items-center px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50">Delete</button>
+                                        <button
+                                            type="button"
+                                            data-action="suspend"
+                                            data-user-id="<?= (int) $user['id'] ?>"
+                                            data-username="<?= htmlspecialchars($user['username'], ENT_QUOTES, 'UTF-8') ?>"
+                                            class="flex w-full items-center px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50">
+                                            Suspend
+                                        </button>
                                     </div>
                                 </div>
                             </td>

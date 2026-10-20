@@ -15,3 +15,9 @@ input[type="password"]::-webkit-strong-password-auto-fill-button {
   visibility: hidden;
   pointer-events: none;
 }
+
+body {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Ctext x='20' y='90' font-family='Arial,sans-serif' font-size='38' font-weight='900' font-style='italic' fill='%23fed201' fill-opacity='0.045' transform='rotate(-25 150 90)'%3ENexQ%3C/text%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}

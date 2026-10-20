@@ -15,7 +15,7 @@ class QueueOverview
     {
         $sql = "SELECT id, ticket_no, status, timestamp
             FROM email
-            ORDER BY id ASC";
+            ORDER BY id DESC";
 
         $result = $this->conn->query($sql);
 
