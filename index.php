@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NexQ</title>
-    <link rel="icon" href="public/png/tip-logo.png" type="image/png">
+    <link rel="icon" href="public/png/new-tip-logo.png" type="image/png">
     <link rel="stylesheet" href="css/body.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
@@ -14,7 +14,7 @@
 
     <main class="flex flex-col lg:flex-row flex-1 max-w-[1440px] lg:mx-auto justify-evenly p-4 lg:p-0 gap-4 lg:gap-0">
         <section class="max-w-md lg:p-8 justify-center lg:flex flex-col hidden">
-            <img src="public/png/tip-logo.png" alt="NexQ Logo" class="size-32">
+            <img src="public/png/new-tip-logo.png" alt="NexQ Logo" class="size-32">
             <h1 class="text-5xl font-bold">Nex<span class="text-[#fdd201]">Q</span></h1>
             <h2 class="font-semibold text-2xl">Queue Notification System</h2>
             <p class="text-xl">Student Accounting Office</p>
@@ -182,7 +182,7 @@
 
     <footer class="md:flex md:justify-between bg-[#fed201] px-8 md:pt-3 md:pb-2 text-black">
         <div class="flex gap-1 md:gap-5 md:flex-row flex-col justify-center items-center">
-            <img src="public/png/tip-logo.png" alt="Tip Logo" class="size-24">
+            <img src="public/png/new-tip-logo.png" alt="Tip Logo" class="size-24">
 
             <div class="flex flex-col justify-center font-semibold">
                 <h2 class="text-center md:text-start">

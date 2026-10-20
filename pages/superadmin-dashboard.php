@@ -52,7 +52,7 @@ $totalActive = $users->totalActive();
         </div>
     </div>
 
-    
+    <!--Quick Actions & Recent Activity-->
     <div class="w-full border-2 border-[#FED201] rounded-lg p-5">
 
         <!--Quick Actions-->
