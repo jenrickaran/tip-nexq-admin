@@ -19,9 +19,9 @@ $pages = [
 $page = $_GET['page'] ?? 'dashboard';
 ?>
 
-<body class="bg-zinc-900 text-white min-h-screen">
+<body class="bg-zinc-900 text-white min-h-screen flex flex-col pt-4">
 
-    <div class="max-w-[1440px] flex flex-col mx-auto lg:px-8 2xl:px-0">
+    <div class="max-w-[1440px] w-full flex flex-col flex-1 mx-auto lg:px-8 2xl:px-0">
         <?php
         include 'superadmin-header.php';
         ?>
@@ -52,4 +52,5 @@ $page = $_GET['page'] ?? 'dashboard';
     <script src="../js/reset-password-modal.js"></script>
     <script src="../js/hamburger-menu-superadmin.js"></script>
     <script src="../js/navigation-bar-superadmin.js"></script>
+    <script src="../js/modern-ui-dropdown.js"></script>
 </body>

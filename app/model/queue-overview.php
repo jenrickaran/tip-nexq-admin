@@ -13,9 +13,9 @@ class QueueOverview
 
     public function getWaitingQueue()
     {
-        $sql = "SELECT id, ticket_no, status, timestamp
-            FROM email
-            ORDER BY id DESC";
+        $sql = "SELECT id, ticket_no, email, status, timestamp
+                FROM email
+                ORDER BY id DESC";
 
         $result = $this->conn->query($sql);
 
